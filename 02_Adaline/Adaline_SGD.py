@@ -1,6 +1,7 @@
 import numpy as np
 from numpy.random import seed
 
+
 class AdalineSGD(object):
     """ADAptive LInear NEuron classifier.
 
@@ -23,6 +24,7 @@ class AdalineSGD(object):
         Set random state for shuffling and initializing the weights.
 
     """
+
     def __init__(self, eta=0.01, n_iter=10, shuffle=True, random_state=None):
         self.eta = eta
         self.n_iter = n_iter
@@ -47,8 +49,19 @@ class AdalineSGD(object):
         self : object
 
         """
+        self.w_ = np.zeros(1 + X.shape[1])
+        self.mse = []
 
-        # TODO: Put your code here. Notau que heu d'avaluar si s'han de mesclar les mostres.
+        for _ in range(self.n_iter):
+            if self.shuffle:
+                X, y = self.__shuffle(X, y)
+            errorsSum = 0
+            for xi, target in zip(X, y):
+                error = target - self.net_input(xi)
+                errorsSum += pow(error, 2)
+                self.w_[1:] += self.eta * xi.dot(error)
+                self.w_[0] += self.eta * error
+            self.mse.append(errorsSum / len(X))
 
         return self
 
@@ -56,7 +69,6 @@ class AdalineSGD(object):
         """Shuffle training data"""
         r = np.random.permutation(len(y))
         return X[r], y[r]
-
 
     def net_input(self, X):
         """Calculate net input"""
