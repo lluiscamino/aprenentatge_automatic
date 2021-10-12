@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.datasets import  make_classification
-from Adaline import Adaline
+from Adaline_SGD import AdalineSGD
 
 # Generació del conjunt de mostres
 X, y = make_classification(n_samples=100, n_features=2, n_redundant=0, n_repeated=0,

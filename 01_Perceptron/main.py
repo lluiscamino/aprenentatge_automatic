@@ -17,6 +17,5 @@ y[y == 0] = -1  # La nostra implementació esta pensada per tenir les classes 1 
 
 #  Mostram els resultats
 plt.figure(1)
-
 plt.scatter(X[:, 0], X[:, 1], c=y)
 plt.show()
