@@ -41,13 +41,13 @@ def gaussian_mixture_components_analysis(X):
     plt.show()
 
 
-def plot_images(images):
-    _, axes = plt.subplots(nrows=1, ncols=len(images), figsize=(10, 3))
-
-    for ax, image in zip(axes, images):
-        ax.set_axis_off()
-        ax.imshow(image, cmap=plt.cm.gray_r, interpolation='nearest')
-
+def plot_images(data):
+    fig, ax = plt.subplots(10, 10, figsize=(8, 8),
+                           subplot_kw=dict(xticks=[], yticks=[]))
+    fig.subplots_adjust(hspace=0.05, wspace=0.05)
+    for i, axi in enumerate(ax.flat):
+        im = axi.imshow(data[i].reshape(8, 8), cmap='binary')
+        im.set_clim(0, 16)
     plt.show()
 
 
