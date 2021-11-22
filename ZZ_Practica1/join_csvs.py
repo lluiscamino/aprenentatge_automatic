@@ -8,9 +8,9 @@ parser.add_argument("-o", "--output", dest="output_file",
                     default="data/train.csv")
 args = parser.parse_args()
 
-color_data = pd.read_csv("data/train/color_train.csv").drop(columns="Class")
-shape_data = pd.read_csv("data/train/shape_train.csv")
-texture_data = pd.read_csv("data/train/texture_train.csv")
+color_data = pd.read_csv("data/train/color_train.csv", decimal=",").drop(columns="Class")
+shape_data = pd.read_csv("data/train/shape_train.csv", decimal=",")
+texture_data = pd.read_csv("data/train/texture_train.csv", decimal=",")
 
 data = color_data.join(shape_data).join(texture_data)
 data.to_csv(args.output_file, index=False)
