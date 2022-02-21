@@ -17,7 +17,7 @@ features_names = datos.columns
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=random_value)
 
 random_forest = RandomForestRegressor(random_state=random_value)
-parameters = {'max_depth': range(1, 602, 50), 'n_estimators': range(1, 602, 50)}
+parameters = {'max_depth': range(1, 302, 50), 'n_estimators': range(1, 302, 50)}
 grid_search_cv = GridSearchCV(random_forest, parameters, cv=3)
 grid_search_cv.fit(X_train, y_train)
 pd.set_option('display.max_columns', None)
